@@ -1,3 +1,4 @@
+import os
 import re
 
 
@@ -44,9 +45,41 @@ def Encryption_Process(text_to_encrypt: str, shift_value: int) -> str:
     return encrypted_text
 
 
-def Printing_A_Result():
-    return "образец"
+def Printing_A_Result(encrypted_text: str) -> str:
+    return encrypted_text
 
 
 def Quitting():
-    return "образец"
+    exit()
+
+
+if __name__ == "__main__":
+    while True:
+        os.system("cls")
+        user_choice = Print_Menu()
+        match user_choice:
+            case "1":
+                encryption_info = String_Work()
+                if type(encryption_info) is not list:
+                    input(f"Ошибка: {encryption_info}.\n"
+                          f"Нажмите любую клавишу, чтобы продолжить...")
+                try:
+                    encrypted_string = ""
+                except:
+                    pass
+            case "2":
+                try:
+                    if type(encryption_info) is list:
+                        encrypted_string = Encryption_Process(encryption_info[0], encryption_info[1])
+                except:
+                    input("Сперва введите данные для шифрования!\n"
+                          "Нажмите любую клавишу, чтобы продолжить...")
+            case "3":
+                try:
+                    input(f"Ваша зашифрованная строка: {encrypted_string}\n"
+                          f"Нажмите любую клавишу, чтобы продолжить...")
+                except:
+                    input("Вы не осуществили шифрование, результат отсутствует\n"
+                          "Нажмите любую клавишу, чтобы продолжить...")
+            case "4":
+                Quitting()
